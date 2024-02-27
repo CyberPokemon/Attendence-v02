@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Attendence App</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="click_to_register">Click to register</string>
+    <string name="logout">Logout</string>
+    <string name="enter_following_details">Enter Following Details</string>
+    <string name="college_registration_id">College Registration Id</string>
+    <string name="submit">Submit</string>
+    <string name="name">Name</string>
+</resources>
