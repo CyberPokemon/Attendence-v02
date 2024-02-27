@@ -18,8 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class enterSignupDetails extends AppCompatActivity {
 
-    TextInputEditText CRI,Name,type, joinYear, stream, section;
-    String CRI1,Name1,type1, joinYear1, stream1, section1,email1;
+    TextInputEditText CRI, Name, type, joinYear, stream, section;
+    String CRI1, Name1, type1, joinYear1, stream1, section1, email1;
     Button submit2;
     DatabaseReference databaseReference;
     FirebaseDatabase db;
@@ -30,9 +30,9 @@ public class enterSignupDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_signup_details);
 
-        CRI=findViewById(R.id.collegeRegistration);
+        CRI = findViewById(R.id.collegeRegistration);
         Name = findViewById(R.id.name);
-        type= findViewById(R.id.type);
+        type = findViewById(R.id.type);
         joinYear = findViewById(R.id.joinyear);
         stream = findViewById(R.id.stream);
         section = findViewById(R.id.section);
@@ -47,23 +47,27 @@ public class enterSignupDetails extends AppCompatActivity {
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
 
-                CRI1= String.valueOf(CRI.getText());
-                Name1= String.valueOf(CRI.getText());
-                type1= String.valueOf(CRI.getText());
-                joinYear1= String.valueOf(CRI.getText());
-                stream1= String.valueOf(CRI.getText());
-                section1= String.valueOf(CRI.getText());
-                email1= getIntent().getStringExtra("email");
+                CRI1 = String.valueOf(CRI.getText());
+                Name1 = String.valueOf(Name.getText());
+                type1 = String.valueOf(type.getText());
+                joinYear1 = String.valueOf(joinYear.getText());
+                stream1 = String.valueOf(stream.getText());
+                section1 = String.valueOf(section.getText());
+                email1 = getIntent().getStringExtra("email");
 
-                if(!(CRI1.isEmpty() && Name1.isEmpty() && type1.isEmpty() && joinYear1.isEmpty() && stream1.isEmpty() && section1.isEmpty() && email1.isEmpty()))
-                {
-                    User user = new User(CRI1,Name1,type1,joinYear1,stream1,section1,email1);
+
+                if (CRI1.isEmpty() == false && Name1.isEmpty() == false && type1.isEmpty() == false && joinYear1.isEmpty() == false && stream1.isEmpty() == false && section1.isEmpty() == false) {
+                    System.out.println("PASS1");
+                    User user = new User(CRI1, Name1, type1, joinYear1, stream1, section1, email1);
+                    System.out.println("PASS2");
 
                     db = FirebaseDatabase.getInstance();
                     databaseReference = db.getReference("Users");
+                    System.out.println("PASS3");
                     databaseReference.push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            System.out.println("PASS4");
                             CRI.setText("");
                             Name.setText("");
                             type.setText("");
@@ -71,13 +75,12 @@ public class enterSignupDetails extends AppCompatActivity {
                             stream.setText("");
                             section.setText("");
                             progressBar.setVisibility(View.GONE);
+                            System.out.println("PASS5");
                         }
                     });
 
 
-                }
-                else
-                {
+                } else {
                     Toast.makeText(enterSignupDetails.this, "Fill All the details", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
