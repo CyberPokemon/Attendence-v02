@@ -3,6 +3,7 @@ package com.example.attendenceappv02;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,28 +58,56 @@ public class enterSignupDetails extends AppCompatActivity {
                 email1 = getIntent().getStringExtra("email");
 
 
-                if (CRI1.isEmpty() == false && Name1.isEmpty() == false && type1.isEmpty() == false && joinYear1.isEmpty() == false && stream1.isEmpty() == false && section1.isEmpty() == false) {
-                    System.out.println("PASS1");
-                    User user = new User(CRI1, Name1, type1, joinYear1, stream1, section1, email1);
-                    System.out.println("PASS2");
+//                db = FirebaseDatabase.getInstance();
+//                databaseReference = db.getReference("user");
 
-                    db = FirebaseDatabase.getInstance();
-                    databaseReference = db.getReference("Users");
-                    System.out.println("PASS3");
-                    databaseReference.push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            System.out.println("PASS4");
-                            CRI.setText("");
-                            Name.setText("");
-                            type.setText("");
-                            joinYear.setText("");
-                            stream.setText("");
-                            section.setText("");
-                            progressBar.setVisibility(View.GONE);
-                            System.out.println("PASS5");
-                        }
-                    });
+
+                if (CRI1.isEmpty() == false && Name1.isEmpty() == false && type1.isEmpty() == false && joinYear1.isEmpty() == false && stream1.isEmpty() == false && section1.isEmpty() == false) {
+
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(),Login.class);
+                    startActivity(intent);
+                    finish();
+//                    System.out.println("PASS1");
+//                    User user = new User(CRI1, Name1, type1, joinYear1, stream1, section1, email1);
+//                    System.out.println("PASS2");
+//
+//                    System.out.println(user.cri+user.name+ user.type+ user.joinyear+user.section+user.stream);
+//
+//
+//                    System.out.println(databaseReference);
+//                    System.out.println("PASS3");
+//
+//
+//                    databaseReference.setValue(user).addOnCompleteListener(unused->{
+//
+//                        Toast.makeText(enterSignupDetails.this, "Details uploaded succesfully", Toast.LENGTH_SHORT).show();
+//                        System.out.println("PASS4");
+//                            CRI.setText("");
+//                            Name.setText("");
+//                            type.setText("");
+//                            joinYear.setText("");
+//                            stream.setText("");
+//                            section.setText("");
+//                            progressBar.setVisibility(View.GONE);
+//                            System.out.println("PASS5");
+//                    }).addOnFailureListener(error -> {
+//                        Toast.makeText(enterSignupDetails.this, "Error saving user data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+//                    });
+//                    databaseReference.child(CRI1).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            System.out.println("PASS4");
+//                            CRI.setText("");
+//                            Name.setText("");
+//                            type.setText("");
+//                            joinYear.setText("");
+//                            stream.setText("");
+//                            section.setText("");
+//                            progressBar.setVisibility(View.GONE);
+//                            System.out.println("PASS5");
+//                        }
+//                    });
 
 
                 } else {
