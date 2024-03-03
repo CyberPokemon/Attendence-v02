@@ -7,12 +7,24 @@
     tools:context=".scanPage">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="scan"
+        android:id="@+id/scanbtn"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="scan me"
         android:gravity="center"
         android:textSize="30sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:id="@+id/scantext"/>
 
 </FrameLayout>

@@ -15,6 +15,12 @@
         android:theme="@style/Theme.AttendenceApp"
         tools:targetApi="31">
         <activity
+            android:name=".studentorteacher"
+            android:exported="false" />
+        <activity
+            android:name=".teacherpage1"
+            android:exported="false" />
+        <activity
             android:name=".studentpage1"
             android:exported="false" />
         <activity
